@@ -14,6 +14,8 @@
         <style>
         html, body {
             background-color: #ffffff;
+            margin: 0;
+            padding: 0;
         }
         .ol-control > * {
             background-color: #f8f8f8!important;
@@ -37,13 +39,16 @@
 
         <style>
         #map {
-            width: 1556px;
-            height: 894px;
+            width: 100%;
+            height: calc(100vh - 80px); /* Adjusts map height automatically below the title */
         }
         </style>
-        <title></title>
+        <title>Phnom Penh Land Use Map 2026</title>
     </head>
     <body>
+        <!-- The title banner is placed right here at the top of the webpage body -->
+        <h1 style="text-align: center; font-family: sans-serif; margin: 15px 0; color: #333333;">Phnom Penh Land Use Map 2026</h1>
+
         <div id="map">
             <div id="popup" class="ol-popup">
                 <a href="#" id="popup-closer" class="ol-popup-closer"></a>
