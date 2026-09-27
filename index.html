@@ -14,6 +14,8 @@
         <style>
         html, body {
             background-color: #ffffff;
+            margin: 0;
+            padding: 0;
         }
         .ol-control > * {
             background-color: #f8f8f8!important;
@@ -39,12 +41,47 @@
         #map {
             width: 1556px;
             height: 894px;
+            position: relative;
+        }
+        /* Custom Title Banner Styles */
+        .map-title-banner {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            text-align: center;
+            font-family: 'Khmer OS Battambang', 'Helvetica Neue', Arial, sans-serif;
+            pointer-events: none; /* Allows clicks to pass through to the map underneath if needed */
+        }
+        .title-khmer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin: 0 0 4px 0;
+        }
+        .title-english {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555555;
+            margin: 0;
+            font-style: italic;
         }
         </style>
-        <title></title>
+        <title>ផែនទីប្រើប្រាស់ដី និងគម្របដី រាជធានីភ្នំពេញ ឆ្នាំ ២០២៦</title>
     </head>
     <body>
         <div id="map">
+            <!-- Floating Title Banner Elements -->
+            <div class="map-title-banner">
+                <h1 class="title-khmer">ផែនទីប្រើប្រាស់ដី និងគម្របដី រាជធានីភ្នំពេញ ឆ្នាំ ២០២៦</h1>
+                <h2 class="title-english">Landuse And Landcover Map of Phnom Penh City 2026</h2>
+            </div>
+            
             <div id="popup" class="ol-popup">
                 <a href="#" id="popup-closer" class="ol-popup-closer"></a>
                 <div id="popup-content"></div>
