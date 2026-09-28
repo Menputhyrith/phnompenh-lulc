@@ -324,3 +324,81 @@
         <script src="./resources/qgis2web.js"></script>
     </body>
 </html>
+<!-- Province / District / Commune On-Off Controls -->
+<div id="map-label-controls" style="
+    position:absolute;
+    top:300px;
+    left:10px;
+    z-index:1000;
+    background:rgba(255,255,255,0.95);
+    padding:10px 12px;
+    border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    width:180px;
+">
+
+    <div style="
+        font-weight:bold;
+        color:#2c3e50;
+        margin-bottom:8px;
+    ">
+        Map Labels
+    </div>
+
+    <label style="display:block;margin-bottom:7px;cursor:pointer;">
+        <input type="checkbox" id="province-toggle" checked>
+        Province
+    </label>
+
+    <label style="display:block;margin-bottom:7px;cursor:pointer;">
+        <input type="checkbox" id="district-toggle" checked>
+        District
+    </label>
+
+    <label style="display:block;cursor:pointer;">
+        <input type="checkbox" id="commune-toggle" checked>
+        Commune
+    </label>
+
+</div>
+
+<script>
+(function () {
+
+    function updateLayer(layer, visible) {
+        if (layer && typeof layer.setVisible === "function") {
+            layer.setVisible(visible);
+        }
+    }
+
+    document.getElementById("province-toggle").addEventListener("change", function () {
+        updateLayer(
+            typeof lyr_Point_Province_3 !== "undefined"
+                ? lyr_Point_Province_3
+                : null,
+            this.checked
+        );
+    });
+
+    document.getElementById("district-toggle").addEventListener("change", function () {
+        updateLayer(
+            typeof lyr_Point_District_2 !== "undefined"
+                ? lyr_Point_District_2
+                : null,
+            this.checked
+        );
+    });
+
+    document.getElementById("commune-toggle").addEventListener("change", function () {
+        updateLayer(
+            typeof lyr_Commune_PP_1 !== "undefined"
+                ? lyr_Commune_PP_1
+                : null,
+            this.checked
+        );
+    });
+
+})();
+</script>
