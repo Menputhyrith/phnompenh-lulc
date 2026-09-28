@@ -1,24 +1,54 @@
 var wms_layers = [];
 
+// ================================================================
+// LULC 2026 - separate class layers
+// ================================================================
+var lulcExtent2026 = [11657410.000000, 1279731.100345, 11693440.000000, 1315682.657970];
+
+// Original complete classification
 var lyr_PhnomPenh_LULC_2026_RF_0 = new ol.layer.Image({
+    opacity: 1,
+    title: 'LULC 2026 - All Classes',
+    source: new ol.source.ImageStatic({
+        url: "./layers/PhnomPenh_LULC_2026_RF_0.png",
+        attributions: ' ',
+        projection: 'EPSG:3857',
+        alwaysInRange: true,
+        imageExtent: lulcExtent2026
+    })
+});
+
+function makeLulcClassLayer(title, file, color) {
+    var layer = new ol.layer.Image({
         opacity: 1,
-        
-    title: 'PhnomPenh_LULC_2026_RF<br />\
-    <img src="styles/legend/PhnomPenh_LULC_2026_RF_0_0.png" /> 1<br />\
-    <img src="styles/legend/PhnomPenh_LULC_2026_RF_0_1.png" /> 2<br />\
-    <img src="styles/legend/PhnomPenh_LULC_2026_RF_0_2.png" /> 3<br />\
-    <img src="styles/legend/PhnomPenh_LULC_2026_RF_0_3.png" /> 4<br />\
-    <img src="styles/legend/PhnomPenh_LULC_2026_RF_0_4.png" /> 5<br />' ,
-        
-        
+        visible: false,
+        title: title,
         source: new ol.source.ImageStatic({
-            url: "./layers/PhnomPenh_LULC_2026_RF_0.png",
+            url: "./layers/lulc_classes/" + file,
             attributions: ' ',
             projection: 'EPSG:3857',
             alwaysInRange: true,
-            imageExtent: [11657410.000000, 1279731.100345, 11693440.000000, 1315682.657970]
+            imageExtent: lulcExtent2026
         })
     });
+    layer.set('lulcClass', true);
+    layer.set('lulcColor', color);
+    return layer;
+}
+
+var lyr_LULC_Urban = makeLulcClassLayer('Urban / Built-up', 'Urban_Builtup.png', '#DE3A13');
+var lyr_LULC_Agriculture = makeLulcClassLayer('Agriculture', 'Agriculture.png', '#E1D904');
+var lyr_LULC_Water = makeLulcClassLayer('Water', 'Water.png', '#1761D1');
+var lyr_LULC_Vegetation = makeLulcClassLayer('Vegetation / Forest', 'Vegetation.png', '#297B18');
+var lyr_LULC_Shrubland = makeLulcClassLayer('Shrubland', 'Shrubland.png', '#EA9B0A');
+
+var lulcClassLayers = [
+    lyr_LULC_Urban,
+    lyr_LULC_Agriculture,
+    lyr_LULC_Water,
+    lyr_LULC_Vegetation,
+    lyr_LULC_Shrubland
+];
 var format_Commune_PP_1 = new ol.format.GeoJSON();
 var features_Commune_PP_1 = format_Commune_PP_1.readFeatures(json_Commune_PP_1, 
             {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
@@ -110,8 +140,10 @@ var lyr_PhnomPenh_6 = new ol.layer.Vector({
                 title: '<img src="styles/legend/PhnomPenh_6.png" /> PhnomPenh'
             });
 
-lyr_PhnomPenh_LULC_2026_RF_0.setVisible(true);lyr_Commune_PP_1.setVisible(true);lyr_Point_District_2.setVisible(true);lyr_Point_Province_3.setVisible(true);lyr_PP_Commune_4.setVisible(true);lyr_District_PP_5.setVisible(true);lyr_PhnomPenh_6.setVisible(true);
-var layersList = [lyr_PhnomPenh_LULC_2026_RF_0,lyr_Commune_PP_1,lyr_Point_District_2,lyr_Point_Province_3,lyr_PP_Commune_4,lyr_District_PP_5,lyr_PhnomPenh_6];
+lyr_PhnomPenh_LULC_2026_RF_0.setVisible(true);
+lulcClassLayers.forEach(function(layer) { layer.setVisible(false); });
+lyr_Commune_PP_1.setVisible(true);lyr_Point_District_2.setVisible(true);lyr_Point_Province_3.setVisible(true);lyr_PP_Commune_4.setVisible(true);lyr_District_PP_5.setVisible(true);lyr_PhnomPenh_6.setVisible(true);
+var layersList = [lyr_PhnomPenh_LULC_2026_RF_0].concat(lulcClassLayers,[lyr_Commune_PP_1,lyr_Point_District_2,lyr_Point_Province_3,lyr_PP_Commune_4,lyr_District_PP_5,lyr_PhnomPenh_6]);
 lyr_Commune_PP_1.set('fieldAliases', {'Code': 'Code', 'Class': 'Class', 'Name_LM': 'Name_LM', 'Name_UNC': 'Name_UNC', 'Name': 'Name', 'Reference': 'Reference', 'GlobalID': 'GlobalID', 'Code_txt': 'Code_txt', });
 lyr_Point_District_2.set('fieldAliases', {'Code': 'Code', 'Class': 'Class', 'Name_LM': 'Name_LM', 'Name_UNC': 'Name_UNC', 'Name': 'Name', 'Reference': 'Reference', 'GlobalID': 'GlobalID', 'Code_txt': 'Code_txt', });
 lyr_Point_Province_3.set('fieldAliases', {'Code': 'Code', 'Class': 'Class', 'Name_LM': 'Name_LM', 'Name_UNC': 'Name_UNC', 'Name': 'Name', 'Reference': 'Reference', 'GlobalID': 'GlobalID', 'Code_txt': 'Code_txt', });
