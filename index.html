@@ -60,46 +60,44 @@
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.95);
-            padding: 8px 16px;
+            padding: 8px 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             z-index: 1000;
             text-align: center;
             border-top: 3px solid #1761D1;
-            max-width: 85%;
+            width: max-content;
+            max-width: 90%;
+            box-sizing: border-box;
             pointer-events: auto;
         }
         #map-title-box h1 {
             margin: 0;
-            font-size: 15px;
+            font-size: clamp(13px, 1.5vw, 18px);
             color: #2c3e50;
             font-family: 'Khmer OS Muol Light', 'Hanuman', serif, sans-serif;
-            line-height: 1.2;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            line-height: 1.3;
+            word-break: normal;
         }
         #map-title-box h2 {
-            margin: 2px 0 0 0;
-            font-size: 11px;
+            margin: 3px 0 0 0;
+            font-size: clamp(10px, 1.1vw, 13px);
             color: #7f8c8d;
             font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            word-break: normal;
         }
 
         /* --- Collapsible Legend Panel --- */
         #lulc-class-panel {
             position: absolute;
-            top: 75px;
+            top: 85px;
             left: 10px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             z-index: 1000;
             width: 200px;
-            max-height: calc(100vh - 90px);
+            max-height: calc(100vh - 100px);
             overflow: hidden;
             transition: all 0.3s ease;
         }
@@ -174,21 +172,16 @@
             color: #2c3e50 !important;
         }
 
-        /* --- Responsive Tweaks (Phones & Landscape) --- */
+        /* --- Responsive Tweaks (Phones & Small Displays) --- */
         @media (max-width: 600px) {
             #map-title-box {
                 top: 6px;
-                padding: 4px 10px;
-                max-width: 90%;
-            }
-            #map-title-box h1 {
-                font-size: 11px;
-            }
-            #map-title-box h2 {
-                font-size: 9px;
+                padding: 6px 12px;
+                width: 92%;
+                max-width: 92%;
             }
             #lulc-class-panel {
-                top: 55px;
+                top: 65px;
                 left: 6px;
                 width: 170px;
             }
@@ -206,16 +199,13 @@
         @media (orientation: landscape) and (max-height: 500px) {
             #map-title-box {
                 top: 4px;
-                padding: 2px 10px;
+                padding: 4px 10px;
             }
             #map-title-box h2 {
-                display: none; /* Hide English subtitle in landscape mobile mode to keep vertical height tiny */
-            }
-            #map-title-box h1 {
-                font-size: 11px;
+                display: none;
             }
             #lulc-class-panel {
-                top: 35px;
+                top: 40px;
                 width: 160px;
             }
             .lulc-content {
@@ -226,7 +216,7 @@
     </head>
     <body>
 
-        <!-- Compact Title Box -->
+        <!-- Responsive Title Box -->
         <div id="map-title-box">
             <h1>ផែនទីប្រើប្រាស់ដី និងគម្របដី រាជធានីភ្នំពេញ ឆ្នាំ២០២៦</h1>
             <h2>LandUse and LandCover Map of Phnom Penh City 2026</h2>
@@ -296,7 +286,7 @@
             document.getElementById('lulc-class-panel').classList.toggle('collapsed');
         });
 
-        // Automatically collapse legend on small screens/mobile on initial load
+        // Automatically collapse legend on mobile initial load
         if (window.innerWidth <= 600) {
             document.getElementById('lulc-class-panel').classList.add('collapsed');
         }
