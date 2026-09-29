@@ -96,7 +96,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             z-index: 1000;
-            width: 200px;
+            width: 245px;
             max-height: calc(100vh - 100px);
             overflow: hidden;
             transition: all 0.3s ease;
@@ -183,7 +183,7 @@
             #lulc-class-panel {
                 top: 65px;
                 left: 6px;
-                width: 170px;
+                width: 210px;
             }
             .lulc-header-toggle {
                 padding: 6px 10px;
@@ -212,6 +212,99 @@
                 max-height: 45vh;
             }
         }
+
+        /* --- Map Labels Panel --- */
+        #map-label-controls {
+            position: absolute;
+            top: 300px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            padding: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            width: 180px;
+            overflow: hidden;
+        }
+
+        #map-label-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 10px 8px 12px;
+            background: rgba(245,247,250,0.95);
+            border-bottom: 1px solid #e2e8f0;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        #map-label-close {
+            border: none;
+            background: transparent;
+            color: #7f8c8d;
+            font-size: 20px;
+            line-height: 18px;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #map-label-close:hover {
+            background: #e9eef3;
+            color: #2c3e50;
+        }
+
+        #map-label-content {
+            padding: 10px 12px;
+        }
+
+        #map-label-content label {
+            display: block;
+            margin-bottom: 7px;
+            cursor: pointer;
+        }
+
+        #map-label-content label:last-child {
+            margin-bottom: 0;
+        }
+
+        #map-label-open {
+            display: none;
+            position: absolute;
+            top: 300px;
+            left: 10px;
+            z-index: 1000;
+            border: none;
+            background: rgba(255,255,255,0.95);
+            color: #2c3e50;
+            padding: 8px 11px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #map-label-open:hover {
+            background: #f0f3f6;
+        }
+
+        @media (max-width: 600px) {
+            #map-label-controls {
+                top: 235px;
+                left: 6px;
+                width: 170px;
+            }
+            #map-label-open {
+                top: 235px;
+                left: 6px;
+            }
+        }
         </style>
     </head>
     <body>
@@ -225,11 +318,11 @@
         <!-- Collapsible Legend Panel -->
         <div id="lulc-class-panel">
             <div class="lulc-header-toggle" id="lulc-toggle">
-                <h3>LULC 2026</h3>
+                <h3>LULC 2026 • 5 Classes</h3>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="lulc-content">
-                <div class="lulc-subtitle">Filter classes:</div>
+                <div class="lulc-subtitle">Filter LULC classes:</div>
                 <label class="all-row">
                     <input type="checkbox" id="lulc-all" checked>
                     <span>All classes</span>
@@ -237,27 +330,27 @@
                 <label>
                     <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Urban">
                     <span class="swatch" style="background:#DE3A13"></span>
-                    <span>Urban / Built-up</span>
+                    <span>តំបន់សំណង់ (Built-up Area)</span>
                 </label>
                 <label>
                     <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Agriculture">
                     <span class="swatch" style="background:#E1D904"></span>
-                    <span>Agriculture</span>
+                    <span>តំបន់កសិកម្ម (Agricultural Area)</span>
                 </label>
                 <label>
                     <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Water">
                     <span class="swatch" style="background:#1761D1"></span>
-                    <span>Water</span>
+                    <span>ផ្ទៃទឹក (Water Area)</span>
                 </label>
                 <label>
                     <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Vegetation">
                     <span class="swatch" style="background:#297B18"></span>
-                    <span>Vegetation / Forest</span>
+                    <span>តំបន់បៃតង (Green Area)</span>
                 </label>
                 <label>
                     <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Shrubland">
                     <span class="swatch" style="background:#EA9B0A"></span>
-                    <span>Shrubland</span>
+                    <span>ដីទំនេរ (Vacant Land)</span>
                 </label>
             </div>
         </div>
@@ -298,8 +391,29 @@
             var boxes = Array.prototype.slice.call(document.querySelectorAll('.lulc-class-check'));
             
             function setAllMode() {
-                if (typeof lyr_PhnomPenh_LULC_2026_RF_0 !== 'undefined') lyr_PhnomPenh_LULC_2026_RF_0.setVisible(true);
-                if (typeof lulcClassLayers !== 'undefined') lulcClassLayers.forEach(function(layer) { layer.setVisible(false); });
+                // Hide the original complete raster because it contains Shrubland.
+                if (typeof lyr_PhnomPenh_LULC_2026_RF_0 !== 'undefined') {
+                    lyr_PhnomPenh_LULC_2026_RF_0.setVisible(false);
+                }
+
+                // Show only the four requested LULC classes.
+                var fourClasses = [
+                    'lyr_LULC_Urban',
+                    'lyr_LULC_Agriculture',
+                    'lyr_LULC_Water',
+                    'lyr_LULC_Vegetation'
+                ];
+
+                fourClasses.forEach(function(name) {
+                    var layer = getLayerByName(name);
+                    if (layer) layer.setVisible(true);
+                });
+
+                // Keep Shrubland hidden if it still exists in layers.js.
+                if (typeof lyr_LULC_Shrubland !== 'undefined') {
+                    lyr_LULC_Shrubland.setVisible(false);
+                }
+
                 boxes.forEach(function(b) { b.checked = false; });
                 allBox.checked = true;
             }
@@ -324,81 +438,85 @@
         <script src="./resources/qgis2web.js"></script>
     </body>
 </html>
-<!-- Province / District / Commune On-Off Controls -->
-<div id="map-label-controls" style="
-    position:absolute;
-    top:300px;
-    left:10px;
-    z-index:1000;
-    background:rgba(255,255,255,0.95);
-    padding:10px 12px;
-    border-radius:8px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.15);
-    font-family:Arial,sans-serif;
-    font-size:12px;
-    width:180px;
-">
 
-    <div style="
-        font-weight:bold;
-        color:#2c3e50;
-        margin-bottom:8px;
-    ">
-        Map Labels
-    </div>
+        <!-- Map Label Controls -->
+        <div id="map-label-controls">
+            <div id="map-label-header">
+                <span>Map Labels</span>
+                <button id="map-label-close" type="button" title="Close map labels">×</button>
+            </div>
 
-    <label style="display:block;margin-bottom:7px;cursor:pointer;">
-        <input type="checkbox" id="province-toggle" checked>
-        Province
-    </label>
+            <div id="map-label-content">
+                <label>
+                    <input type="checkbox" id="province-toggle" checked>
+                    Province
+                </label>
 
-    <label style="display:block;margin-bottom:7px;cursor:pointer;">
-        <input type="checkbox" id="district-toggle" checked>
-        District
-    </label>
+                <label>
+                    <input type="checkbox" id="district-toggle" checked>
+                    District
+                </label>
 
-    <label style="display:block;cursor:pointer;">
-        <input type="checkbox" id="commune-toggle" checked>
-        Commune
-    </label>
+                <label>
+                    <input type="checkbox" id="commune-toggle" checked>
+                    Commune
+                </label>
+            </div>
+        </div>
 
-</div>
+        <!-- Button to reopen Map Labels after closing -->
+        <button id="map-label-open" type="button" title="Open map labels">🏷 Labels</button>
 
-<script>
-(function () {
+        <script>
+        (function () {
 
-    function updateLayer(layer, visible) {
-        if (layer && typeof layer.setVisible === "function") {
-            layer.setVisible(visible);
-        }
-    }
+            function updateLayer(layer, visible) {
+                if (layer && typeof layer.setVisible === "function") {
+                    layer.setVisible(visible);
+                }
+            }
 
-    document.getElementById("province-toggle").addEventListener("change", function () {
-        updateLayer(
-            typeof lyr_Point_Province_3 !== "undefined"
-                ? lyr_Point_Province_3
-                : null,
-            this.checked
-        );
-    });
+            document.getElementById("province-toggle").addEventListener("change", function () {
+                updateLayer(
+                    typeof lyr_Point_Province_3 !== "undefined"
+                        ? lyr_Point_Province_3
+                        : null,
+                    this.checked
+                );
+            });
 
-    document.getElementById("district-toggle").addEventListener("change", function () {
-        updateLayer(
-            typeof lyr_Point_District_2 !== "undefined"
-                ? lyr_Point_District_2
-                : null,
-            this.checked
-        );
-    });
+            document.getElementById("district-toggle").addEventListener("change", function () {
+                updateLayer(
+                    typeof lyr_Point_District_2 !== "undefined"
+                        ? lyr_Point_District_2
+                        : null,
+                    this.checked
+                );
+            });
 
-    document.getElementById("commune-toggle").addEventListener("change", function () {
-        updateLayer(
-            typeof lyr_Commune_PP_1 !== "undefined"
-                ? lyr_Commune_PP_1
-                : null,
-            this.checked
-        );
-    });
+            document.getElementById("commune-toggle").addEventListener("change", function () {
+                updateLayer(
+                    typeof lyr_Commune_PP_1 !== "undefined"
+                        ? lyr_Commune_PP_1
+                        : null,
+                    this.checked
+                );
+            });
 
-})();
-</script>
+            // Close Map Labels panel
+            document.getElementById("map-label-close").addEventListener("click", function () {
+                document.getElementById("map-label-controls").style.display = "none";
+                document.getElementById("map-label-open").style.display = "block";
+            });
+
+            // Reopen Map Labels panel
+            document.getElementById("map-label-open").addEventListener("click", function () {
+                document.getElementById("map-label-controls").style.display = "block";
+                document.getElementById("map-label-open").style.display = "none";
+            });
+
+        })();
+        </script>
+
+    </body>
+</html>
