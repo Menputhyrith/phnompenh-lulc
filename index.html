@@ -391,28 +391,24 @@
             var boxes = Array.prototype.slice.call(document.querySelectorAll('.lulc-class-check'));
             
             function setAllMode() {
-                // Hide the original complete raster because it contains Shrubland.
+                // Hide the original complete raster and display all five class layers.
+                // The fifth class is displayed as Vacant Land (the existing Shrubland layer).
                 if (typeof lyr_PhnomPenh_LULC_2026_RF_0 !== 'undefined') {
                     lyr_PhnomPenh_LULC_2026_RF_0.setVisible(false);
                 }
 
-                // Show only the four requested LULC classes.
-                var fourClasses = [
+                var allClasses = [
                     'lyr_LULC_Urban',
                     'lyr_LULC_Agriculture',
                     'lyr_LULC_Water',
-                    'lyr_LULC_Vegetation'
+                    'lyr_LULC_Vegetation',
+                    'lyr_LULC_Shrubland'
                 ];
 
-                fourClasses.forEach(function(name) {
+                allClasses.forEach(function(name) {
                     var layer = getLayerByName(name);
                     if (layer) layer.setVisible(true);
                 });
-
-                // Keep Shrubland hidden if it still exists in layers.js.
-                if (typeof lyr_LULC_Shrubland !== 'undefined') {
-                    lyr_LULC_Shrubland.setVisible(false);
-                }
 
                 boxes.forEach(function(b) { b.checked = false; });
                 allBox.checked = true;
