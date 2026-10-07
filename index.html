@@ -385,6 +385,7 @@
 
         /* Mobile layout */
         @media (max-width: 600px) {
+
             #map-title-box {
                 top: 6px;
                 padding: 6px 10px;
@@ -465,9 +466,20 @@
 
     <!-- Logos panel -->
     <div id="map-logo-panel">
-        <img src="Image/photo_2026-10-04_14-22-44.jpg" alt="Institutional emblem">
-        <img src="Image/image_2026-10-04_14-22-11.png" alt="Institutional seal">
-        <img src="Image/photo_2026-10-04_14-22-30.jpg" class="target-logo" alt="Project logo">
+
+        <!-- សាលាក្រុង LOGO - FIRST / TOP -->
+        <img src="Image/photo_2026-10-04_14-22-44.jpg"
+             alt="សាលាក្រុង">
+
+        <!-- SECOND LOGO -->
+        <img src="Image/image_2026-10-04_14-22-11.png"
+             alt="Institutional seal">
+
+        <!-- THIRD / PROJECT LOGO -->
+        <img src="Image/photo_2026-10-04_14-22-30.jpg"
+             class="target-logo"
+             alt="Project logo">
+
         <div class="producer-caption">
             <strong>Producers:</strong><br>
             Men Puthyrith,<br>
@@ -475,53 +487,82 @@
             Michael Waibel, and<br>
             Martin Saram
         </div>
+
     </div>
 
     <!-- Methodology & Limitations -->
     <div id="map-method-note">
+
         <p><strong>អំពីការផលិតផែនទី៖</strong></p>
-        <p>• រូបថតផ្កាយរណប ៖ Sentinel-2 ថតនៅថ្ងៃទី 31 ខែកក្កដា ឆ្នាំ 2026</p>
-        <p>• កម្មវិធីផលិតផែនទី ៖ Google Earth Engine ដោយប្រើវិធីសាស្ត្រ Supervised Classification តាមរយៈរូបមន្ត Random Forest</p>
-        <p>• ភាពជឿជាក់ ៖ មានកម្រិតភាពជាក់លាក់ 90% (អាចទទួលយកបាន)</p>
-        <p>• ការបង្ហាញផែនទីក្នុងកម្មវិធី ៖ QGIS2Web</p>
+
+        <p>
+            • រូបថតផ្កាយរណប ៖ Sentinel-2 ថតនៅថ្ងៃទី 31 ខែកក្កដា ឆ្នាំ 2026
+        </p>
+
+        <p>
+            • កម្មវិធីផលិតផែនទី ៖ Google Earth Engine
+            ដោយប្រើវិធីសាស្ត្រ Supervised Classification
+            តាមរយៈរូបមន្ត Random Forest
+        </p>
+
+        <p>
+            • ភាពជឿជាក់ ៖ មានកម្រិតភាពជាក់លាក់ 90% (អាចទទួលយកបាន)
+        </p>
+
+        <p>
+            • ការបង្ហាញផែនទីក្នុងកម្មវិធី ៖ QGIS2Web
+        </p>
 
         <div class="limitation-box">
-            <strong>Limitation:</strong> Sentinel-2’s 10–20 m spatial resolution may limit detection of small buildings, narrow roads, and fragmented urban features, while mixed pixels and spectral similarities can reduce urban land-cover classification accuracy.
+            <strong>Limitation:</strong>
+            Sentinel-2’s 10–20 m spatial resolution may limit detection
+            of small buildings, narrow roads, and fragmented urban features,
+            while mixed pixels and spectral similarities can reduce urban
+            land-cover classification accuracy.
         </div>
 
         <div class="producer-grid">
+
             <div class="producer-item">
                 <span class="producer-title">ផលិតដោយ៖</span>
                 លោក ម៉ែន ពុទ្ធីរិទ្ធ និងលោក វ៉ា ពិសិដ្ឋ<br>
                 <em>មហាវិទ្យាល័យរៀបចំដែនដី និងរដ្ឋបាលដីធ្លី</em>
             </div>
+
             <div class="producer-item">
                 <span class="producer-title">ដឹកនាំដោយ៖</span>
                 បណ្ឌិត ហោ សាណារ៉ា<br>
                 <em>មហាវិទ្យាល័យរៀបចំដែនដី និងរដ្ឋបាលដីធ្លី</em>
             </div>
+
             <div class="producer-item">
                 <span class="producer-title">ដឹកនាំដោយ៖</span>
                 បណ្ឌិត Michael Waibel<br>
                 <em>គម្រោង Build4People</em>
             </div>
+
             <div class="producer-item">
                 <span class="producer-title">ដឹកនាំដោយ៖</span>
                 លោក ម៉ាទីន សារ៉ាម<br>
                 <em>មន្ត្រីសម្របសម្រួលគម្រោង Build4People</em>
             </div>
+
         </div>
     </div>
 
     <!-- LULC class filter panel -->
     <div id="lulc-class-panel">
+
         <div class="lulc-header-toggle" id="lulc-toggle">
             <h3>LULC 2026 • 5 Classes</h3>
             <span class="toggle-icon">▼</span>
         </div>
 
         <div class="lulc-content">
-            <div class="lulc-subtitle">Filter LULC classes:</div>
+
+            <div class="lulc-subtitle">
+                Filter LULC classes:
+            </div>
 
             <label class="all-row">
                 <input type="checkbox" id="lulc-all" checked>
@@ -529,43 +570,86 @@
             </label>
 
             <label>
-                <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Urban">
-                <span class="swatch" style="background:#DE3A13"></span>
-                <span>តំបន់សំណង់ (Built-up Area)</span>
+                <input type="checkbox"
+                       class="lulc-class-check"
+                       data-layer="lyr_LULC_Urban">
+
+                <span class="swatch"
+                      style="background:#DE3A13"></span>
+
+                <span>
+                    តំបន់សំណង់ (Built-up Area)
+                </span>
             </label>
 
             <label>
-                <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Agriculture">
-                <span class="swatch" style="background:#E1D904"></span>
-                <span>តំបន់កសិកម្ម (Agricultural Area)</span>
+                <input type="checkbox"
+                       class="lulc-class-check"
+                       data-layer="lyr_LULC_Agriculture">
+
+                <span class="swatch"
+                      style="background:#E1D904"></span>
+
+                <span>
+                    តំបន់កសិកម្ម (Agricultural Area)
+                </span>
             </label>
 
             <label>
-                <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Water">
-                <span class="swatch" style="background:#1761D1"></span>
-                <span>ផ្ទៃទឹក (Water Area)</span>
+                <input type="checkbox"
+                       class="lulc-class-check"
+                       data-layer="lyr_LULC_Water">
+
+                <span class="swatch"
+                      style="background:#1761D1"></span>
+
+                <span>
+                    ផ្ទៃទឹក (Water Area)
+                </span>
             </label>
 
             <label>
-                <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Vegetation">
-                <span class="swatch" style="background:#297B18"></span>
-                <span>តំបន់បៃតង (Green Area)</span>
+                <input type="checkbox"
+                       class="lulc-class-check"
+                       data-layer="lyr_LULC_Vegetation">
+
+                <span class="swatch"
+                      style="background:#297B18"></span>
+
+                <span>
+                    តំបន់បៃតង (Green Area)
+                </span>
             </label>
 
             <label>
-                <input type="checkbox" class="lulc-class-check" data-layer="lyr_LULC_Shrubland">
-                <span class="swatch" style="background:#EA9B0A"></span>
-                <span>ដីទំនេរ (Vacant Land)</span>
+                <input type="checkbox"
+                       class="lulc-class-check"
+                       data-layer="lyr_LULC_Shrubland">
+
+                <span class="swatch"
+                      style="background:#EA9B0A"></span>
+
+                <span>
+                    ដីទំនេរ (Vacant Land)
+                </span>
             </label>
+
         </div>
     </div>
 
     <!-- Map container -->
     <div id="map">
+
         <div id="popup" class="ol-popup">
-            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+
+            <a href="#"
+               id="popup-closer"
+               class="ol-popup-closer"></a>
+
             <div id="popup-content"></div>
+
         </div>
+
     </div>
 
     <!-- QGIS2Web scripts -->
@@ -592,256 +676,717 @@
     <script src="styles/District_PP_5_style.js"></script>
     <script src="styles/PhnomPenh_6_style.js"></script>
 
-    <script src="./layers/layers.js" type="text/javascript"></script>
+    <script src="./layers/layers.js"></script>
 
     <script>
-        // Collapse or expand the LULC panel
-        document.getElementById("lulc-toggle").addEventListener("click", function () {
-            document.getElementById("lulc-class-panel").classList.toggle("collapsed");
-            setTimeout(positionMapLabels, 350);
-        });
 
+        // =========================================
+        // Collapse / Expand LULC Panel
+        // =========================================
+
+        document.getElementById("lulc-toggle")
+            .addEventListener("click", function () {
+
+                document
+                    .getElementById("lulc-class-panel")
+                    .classList.toggle("collapsed");
+
+                setTimeout(positionMapLabels, 350);
+            });
+
+
+        // Collapse LULC panel on mobile
         if (window.innerWidth <= 600) {
-            document.getElementById("lulc-class-panel").classList.add("collapsed");
+
+            document
+                .getElementById("lulc-class-panel")
+                .classList.add("collapsed");
+
         }
 
-        // LULC class filter controls
+
+        // =========================================
+        // LULC CLASS FILTER
+        // =========================================
+
         (function () {
+
             function getLayerByName(name) {
                 return window[name];
             }
 
-            var allBox = document.getElementById("lulc-all");
-            var boxes = Array.prototype.slice.call(
-                document.querySelectorAll(".lulc-class-check")
-            );
+            var allBox =
+                document.getElementById("lulc-all");
+
+            var boxes =
+                Array.prototype.slice.call(
+                    document.querySelectorAll(".lulc-class-check")
+                );
+
 
             var classLayerNames = [
+
                 "lyr_LULC_Urban",
+
                 "lyr_LULC_Agriculture",
+
                 "lyr_LULC_Water",
+
                 "lyr_LULC_Vegetation",
+
                 "lyr_LULC_Shrubland"
+
             ];
 
+
             function hideOriginalRaster() {
-                if (typeof lyr_PhnomPenh_LULC_2026_RF_0 !== "undefined") {
-                    lyr_PhnomPenh_LULC_2026_RF_0.setVisible(false);
+
+                if (
+                    typeof lyr_PhnomPenh_LULC_2026_RF_0
+                    !== "undefined"
+                ) {
+
+                    lyr_PhnomPenh_LULC_2026_RF_0
+                        .setVisible(false);
+
                 }
+
             }
+
 
             function hideAllClassLayers() {
+
                 classLayerNames.forEach(function (name) {
-                    var layer = getLayerByName(name);
-                    if (layer && typeof layer.setVisible === "function") {
+
+                    var layer =
+                        getLayerByName(name);
+
+                    if (
+                        layer &&
+                        typeof layer.setVisible === "function"
+                    ) {
+
                         layer.setVisible(false);
+
                     }
+
                 });
+
             }
+
 
             function setAllMode() {
+
                 hideOriginalRaster();
+
                 hideAllClassLayers();
+
 
                 classLayerNames.forEach(function (name) {
-                    var layer = getLayerByName(name);
-                    if (layer && typeof layer.setVisible === "function") {
+
+                    var layer =
+                        getLayerByName(name);
+
+                    if (
+                        layer &&
+                        typeof layer.setVisible === "function"
+                    ) {
+
                         layer.setVisible(true);
+
                     }
+
                 });
+
 
                 boxes.forEach(function (box) {
+
                     box.checked = false;
+
                 });
+
 
                 allBox.checked = true;
+
             }
+
 
             function updateClasses() {
-                var selected = boxes.filter(function (box) {
-                    return box.checked;
-                });
+
+                var selected =
+                    boxes.filter(function (box) {
+
+                        return box.checked;
+
+                    });
+
 
                 if (selected.length === 0) {
+
                     setAllMode();
+
                     return;
+
                 }
+
 
                 hideOriginalRaster();
+
                 hideAllClassLayers();
 
+
                 selected.forEach(function (box) {
-                    var layer = getLayerByName(box.getAttribute("data-layer"));
-                    if (layer && typeof layer.setVisible === "function") {
+
+                    var layer =
+                        getLayerByName(
+                            box.getAttribute("data-layer")
+                        );
+
+
+                    if (
+                        layer &&
+                        typeof layer.setVisible === "function"
+                    ) {
+
                         layer.setVisible(true);
+
                     }
+
                 });
 
+
                 allBox.checked = false;
+
             }
 
-            allBox.addEventListener("change", function () {
-                if (this.checked) {
-                    setAllMode();
-                } else {
-                    updateClasses();
+
+            allBox.addEventListener(
+                "change",
+                function () {
+
+                    if (this.checked) {
+
+                        setAllMode();
+
+                    } else {
+
+                        updateClasses();
+
+                    }
+
                 }
-            });
+            );
+
 
             boxes.forEach(function (box) {
-                box.addEventListener("change", updateClasses);
+
+                box.addEventListener(
+                    "change",
+                    updateClasses
+                );
+
             });
+
         })();
+
     </script>
+
 
     <script src="./resources/Autolinker.min.js"></script>
     <script src="./resources/qgis2web.js"></script>
 
-    <!-- Controls Panel (Labels + Method Info + Logos + QGIS Footer Toggle) -->
+
+    <!-- Controls Panel -->
     <div id="map-label-controls">
+
         <div id="map-label-header">
+
             <span>Map Controls</span>
-            <button id="map-label-close" type="button" title="Close controls">×</button>
+
+            <button
+                id="map-label-close"
+                type="button"
+                title="Close controls">
+                ×
+            </button>
+
         </div>
+
 
         <div id="map-label-content">
+
             <!-- Label Toggles -->
-            <label><input type="checkbox" id="province-toggle" checked> Province</label>
-            <label><input type="checkbox" id="district-toggle" checked> District</label>
-            <label><input type="checkbox" id="commune-toggle" checked> Commune</label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="province-toggle"
+                    checked>
+                Province
+            </label>
+
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="district-toggle"
+                    checked>
+                District
+            </label>
+
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="commune-toggle"
+                    checked>
+                Commune
+            </label>
+
 
             <div class="control-separator"></div>
+
 
             <!-- Panel & Logo Toggles -->
-            <label><input type="checkbox" id="method-panel-toggle" checked> Show Info Panel</label>
-            <label><input type="checkbox" id="logo-panel-toggle" checked> Show Logos Panel</label>
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="method-panel-toggle"
+                    checked>
+                Show Info Panel
+            </label>
+
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="logo-panel-toggle"
+                    checked>
+                Show Logos Panel
+            </label>
+
 
             <div class="control-separator"></div>
 
-            <!-- Bottom QGIS Footer Toggle -->
-            <label><input type="checkbox" id="qgis-footer-toggle" checked> Show QGIS Footer</label>
+
+            <!-- QGIS Footer Toggle -->
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="qgis-footer-toggle"
+                    checked>
+                Show QGIS Footer
+            </label>
+
         </div>
+
     </div>
 
+
     <!-- Reopen controls button -->
-    <button id="map-label-open" type="button" title="Open map controls">⚙ Controls</button>
+
+    <button
+        id="map-label-open"
+        type="button"
+        title="Open map controls">
+
+        ⚙ Controls
+
+    </button>
+
 
     <script>
+
+        // =========================================
+        // UPDATE LAYER VISIBILITY
+        // =========================================
+
         function updateLayer(layer, visible) {
-            if (layer && typeof layer.setVisible === "function") {
+
+            if (
+                layer &&
+                typeof layer.setVisible === "function"
+            ) {
+
                 layer.setVisible(visible);
+
             }
+
         }
 
-        // Position controls dynamically
-        function positionMapLabels() {
-            var lulc = document.getElementById("lulc-class-panel");
-            var labels = document.getElementById("map-label-controls");
-            var openButton = document.getElementById("map-label-open");
 
-            if (!lulc || !labels || !openButton) return;
+        // =========================================
+        // POSITION CONTROLS
+        // =========================================
+
+        function positionMapLabels() {
+
+            var lulc =
+                document.getElementById(
+                    "lulc-class-panel"
+                );
+
+            var labels =
+                document.getElementById(
+                    "map-label-controls"
+                );
+
+            var openButton =
+                document.getElementById(
+                    "map-label-open"
+                );
+
+
+            if (!lulc || !labels || !openButton) {
+
+                return;
+
+            }
+
 
             if (window.innerWidth <= 600) {
-                var rect = lulc.getBoundingClientRect();
-                var top = Math.round(rect.bottom + 8);
 
-                labels.style.top = top + "px";
-                openButton.style.top = top + "px";
-                labels.style.left = "6px";
-                openButton.style.left = "6px";
+                var rect =
+                    lulc.getBoundingClientRect();
+
+                var top =
+                    Math.round(rect.bottom + 8);
+
+
+                labels.style.top =
+                    top + "px";
+
+                openButton.style.top =
+                    top + "px";
+
+                labels.style.left =
+                    "6px";
+
+                openButton.style.left =
+                    "6px";
+
             } else {
-                labels.style.top = "300px";
-                openButton.style.top = "300px";
-                labels.style.left = "10px";
-                openButton.style.left = "10px";
+
+                labels.style.top =
+                    "300px";
+
+                openButton.style.top =
+                    "300px";
+
+                labels.style.left =
+                    "10px";
+
+                openButton.style.left =
+                    "10px";
+
             }
+
         }
 
-        // Province Layer Toggle
-        document.getElementById("province-toggle").addEventListener("change", function () {
-            updateLayer(typeof lyr_Point_Province_3 !== "undefined" ? lyr_Point_Province_3 : null, this.checked);
-        });
 
-        // District Layer Toggle
-        document.getElementById("district-toggle").addEventListener("change", function () {
-            updateLayer(typeof lyr_Point_District_2 !== "undefined" ? lyr_Point_District_2 : null, this.checked);
-        });
+        // =========================================
+        // PROVINCE TOGGLE
+        // =========================================
 
-        // Commune Layer Toggle
-        document.getElementById("commune-toggle").addEventListener("change", function () {
-            updateLayer(typeof lyr_Commune_PP_1 !== "undefined" ? lyr_Commune_PP_1 : null, this.checked);
-        });
+        document
+            .getElementById("province-toggle")
+            .addEventListener(
+                "change",
+                function () {
 
-        // Methodology & Producers Info Panel Toggle
-        document.getElementById("method-panel-toggle").addEventListener("change", function () {
-            var panel = document.getElementById("map-method-note");
-            if (panel) {
-                if (this.checked) {
-                    panel.classList.remove("hidden");
-                } else {
-                    panel.classList.add("hidden");
+                    updateLayer(
+                        typeof lyr_Point_Province_3 !== "undefined"
+                            ? lyr_Point_Province_3
+                            : null,
+                        this.checked
+                    );
+
                 }
-            }
-        });
+            );
 
-        // Right Logo Panel Toggle
-        document.getElementById("logo-panel-toggle").addEventListener("change", function () {
-            var logoPanel = document.getElementById("map-logo-panel");
-            if (logoPanel) {
-                if (this.checked) {
-                    logoPanel.classList.remove("hidden");
-                } else {
-                    logoPanel.classList.add("hidden");
+
+        // =========================================
+        // DISTRICT TOGGLE
+        // =========================================
+
+        document
+            .getElementById("district-toggle")
+            .addEventListener(
+                "change",
+                function () {
+
+                    updateLayer(
+                        typeof lyr_Point_District_2 !== "undefined"
+                            ? lyr_Point_District_2
+                            : null,
+                        this.checked
+                    );
+
                 }
-            }
-        });
+            );
 
-        // Fixed Function for QGIS / OpenLayers Footer Toggle
+
+        // =========================================
+        // COMMUNE TOGGLE
+        // =========================================
+
+        document
+            .getElementById("commune-toggle")
+            .addEventListener(
+                "change",
+                function () {
+
+                    updateLayer(
+                        typeof lyr_Commune_PP_1 !== "undefined"
+                            ? lyr_Commune_PP_1
+                            : null,
+                        this.checked
+                    );
+
+                }
+            );
+
+
+        // =========================================
+        // INFO PANEL TOGGLE
+        // =========================================
+
+        document
+            .getElementById("method-panel-toggle")
+            .addEventListener(
+                "change",
+                function () {
+
+                    var panel =
+                        document.getElementById(
+                            "map-method-note"
+                        );
+
+
+                    if (panel) {
+
+                        if (this.checked) {
+
+                            panel.classList.remove(
+                                "hidden"
+                            );
+
+                        } else {
+
+                            panel.classList.add(
+                                "hidden"
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+        // =========================================
+        // LOGO PANEL TOGGLE
+        // =========================================
+
+        document
+            .getElementById("logo-panel-toggle")
+            .addEventListener(
+                "change",
+                function () {
+
+                    var logoPanel =
+                        document.getElementById(
+                            "map-logo-panel"
+                        );
+
+
+                    if (logoPanel) {
+
+                        if (this.checked) {
+
+                            logoPanel.classList.remove(
+                                "hidden"
+                            );
+
+                        } else {
+
+                            logoPanel.classList.add(
+                                "hidden"
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+        // =========================================
+        // QGIS FOOTER TOGGLE
+        // =========================================
+
         function toggleQGISFooter(show) {
-            var targets = document.querySelectorAll(".ol-attribution, .qgis2web-attribution, [class*='attribution']");
+
+            var targets =
+                document.querySelectorAll(
+                    ".ol-attribution, " +
+                    ".qgis2web-attribution, " +
+                    "[class*='attribution']"
+                );
+
+
             targets.forEach(function (el) {
+
                 if (show) {
-                    el.classList.remove("hidden-footer");
+
+                    el.classList.remove(
+                        "hidden-footer"
+                    );
+
                     el.style.display = "";
+
                 } else {
-                    el.classList.add("hidden-footer");
+
+                    el.classList.add(
+                        "hidden-footer"
+                    );
+
                     el.style.display = "none";
+
                 }
+
             });
+
         }
 
-        document.getElementById("qgis-footer-toggle").addEventListener("change", function () {
-            toggleQGISFooter(this.checked);
-        });
 
-        // Re-apply footer toggle after OpenLayers map initializes completely
+        document
+            .getElementById("qgis-footer-toggle")
+            .addEventListener(
+                "change",
+                function () {
+
+                    toggleQGISFooter(
+                        this.checked
+                    );
+
+                }
+            );
+
+
+        // Re-apply footer toggle
         setTimeout(function () {
-            var toggleCheck = document.getElementById("qgis-footer-toggle");
+
+            var toggleCheck =
+                document.getElementById(
+                    "qgis-footer-toggle"
+                );
+
+
             if (toggleCheck) {
-                toggleQGISFooter(toggleCheck.checked);
+
+                toggleQGISFooter(
+                    toggleCheck.checked
+                );
+
             }
+
         }, 800);
 
-        // Close controls window
-        document.getElementById("map-label-close").addEventListener("click", function () {
-            document.getElementById("map-label-controls").style.display = "none";
-            document.getElementById("map-label-open").style.display = "block";
-        });
 
-        // Open controls window
-        document.getElementById("map-label-open").addEventListener("click", function () {
-            document.getElementById("map-label-controls").style.display = "block";
-            document.getElementById("map-label-open").style.display = "none";
-            positionMapLabels();
-        });
+        // =========================================
+        // CLOSE CONTROLS
+        // =========================================
 
-        window.addEventListener("resize", positionMapLabels);
-        window.addEventListener("orientationchange", function () {
-            setTimeout(positionMapLabels, 100);
-        });
+        document
+            .getElementById("map-label-close")
+            .addEventListener(
+                "click",
+                function () {
+
+                    document
+                        .getElementById(
+                            "map-label-controls"
+                        )
+                        .style.display = "none";
+
+
+                    document
+                        .getElementById(
+                            "map-label-open"
+                        )
+                        .style.display = "block";
+
+                }
+            );
+
+
+        // =========================================
+        // OPEN CONTROLS
+        // =========================================
+
+        document
+            .getElementById("map-label-open")
+            .addEventListener(
+                "click",
+                function () {
+
+                    document
+                        .getElementById(
+                            "map-label-controls"
+                        )
+                        .style.display = "block";
+
+
+                    document
+                        .getElementById(
+                            "map-label-open"
+                        )
+                        .style.display = "none";
+
+
+                    positionMapLabels();
+
+                }
+            );
+
+
+        // =========================================
+        // WINDOW RESIZE
+        // =========================================
+
+        window.addEventListener(
+            "resize",
+            positionMapLabels
+        );
+
+
+        window.addEventListener(
+            "orientationchange",
+            function () {
+
+                setTimeout(
+                    positionMapLabels,
+                    100
+                );
+
+            }
+        );
+
+
+        // Initial position
 
         positionMapLabels();
-        setTimeout(positionMapLabels, 100);
+
+        setTimeout(
+            positionMapLabels,
+            100
+        );
+
     </script>
 
 </body>
